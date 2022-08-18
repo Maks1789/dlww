@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from WordsDRF import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('next/<int:pk>/', views.NextWord.as_view()),
 ]
