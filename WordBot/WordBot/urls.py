@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from WordsDRF import views
+from WordsDRF.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('next/<int:pk>/', views.NextWord.as_view()),
+    path('api/v1/wordList/', WordAPIList.as_view()),
+    path('api/v1/wordList/<int:pk>/', WordAPIList.as_view()),
 ]
