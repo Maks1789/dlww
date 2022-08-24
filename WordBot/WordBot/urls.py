@@ -21,4 +21,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/wordList/', WordAPIList.as_view()),
     path('api/v1/wordList/<int:pk>/', WordAPIList.as_view()),
+    path('api/v1/wordList/Street/', WordAPIcategoryStreet.as_view()),
+    path('api/v1/wordList/Home/', WordAPIcategoryHome.as_view()),
+    path('api/v1/wordList/Food/', WordAPIcategoryFood.as_view()),
+
 ]

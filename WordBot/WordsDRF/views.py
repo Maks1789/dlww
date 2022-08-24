@@ -14,6 +14,17 @@ class WordAPIList(generics.ListCreateAPIView):
     serializer_class = WordSerializer
 
 
+class WordAPIcategoryStreet(generics.ListCreateAPIView):
+    queryset = Words.objects.filter(catagory=3)
+    serializer_class = WordSerializer
+
+class WordAPIcategoryHome(generics.ListCreateAPIView):
+    queryset = Words.objects.filter(catagory=2)
+    serializer_class = WordSerializer
+
+class WordAPIcategoryFood(generics.ListCreateAPIView):
+    queryset = Words.objects.filter(catagory=1)
+    serializer_class = WordSerializer
 
 
 
