@@ -1,28 +1,26 @@
-from django.shortcuts import render
-from rest_framework.views import APIView
-from rest_framework import generics
+
 from .models import Words
 
 from rest_framework.response import Response
 from .serializers import WordSerializer
-from . import models
-from django.http import HttpResponseNotFound
+from rest_framework import viewsets
 
 
-class WordAPIList(generics.ListCreateAPIView):
+
+class WordAPIList(viewsets.ModelViewSet):
     queryset = Words.objects.all()
     serializer_class = WordSerializer
 
 
-class WordAPIcategoryStreet(generics.ListCreateAPIView):
+class WordAPIcategoryStreet(viewsets.ReadOnlyModelViewSet):
     queryset = Words.objects.filter(catagory=3)
     serializer_class = WordSerializer
 
-class WordAPIcategoryHome(generics.ListCreateAPIView):
+class WordAPIcategoryHome(viewsets.ReadOnlyModelViewSet):
     queryset = Words.objects.filter(catagory=2)
     serializer_class = WordSerializer
 
-class WordAPIcategoryFood(generics.ListCreateAPIView):
+class WordAPIcategoryFood(viewsets.ReadOnlyModelViewSet):
     queryset = Words.objects.filter(catagory=1)
     serializer_class = WordSerializer
 

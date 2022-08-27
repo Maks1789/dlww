@@ -14,15 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from WordsDRF.views import *
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+
+router.register(r'word', WordAPIList, basename='Wolds_all')
+router.register(r'Street',  WordAPIcategoryStreet, basename='Wolds_Street')
+router.register(r'Home', WordAPIcategoryHome, basename='Wolds_Home')
+router.register(r'Food', WordAPIcategoryFood, basename='Wolds_Food')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/wordList/', WordAPIList.as_view()),
-    path('api/v1/wordList/<int:pk>/', WordAPIList.as_view()),
-    path('api/v1/wordList/Street/', WordAPIcategoryStreet.as_view()),
-    path('api/v1/wordList/Home/', WordAPIcategoryHome.as_view()),
-    path('api/v1/wordList/Food/', WordAPIcategoryFood.as_view()),
-
+    path('api/v1/', include(router.urls)),
 ]
+
