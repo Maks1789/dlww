@@ -2,9 +2,10 @@ import random
 from aiogram.dispatcher import FSMContext
 from .app import *
 from .data_fetcher import get_word_from_url
-from .keyboards import inline_kb
+from .keyboards import inline_kb, reapeat_button
 from .local_setting import WORDS_API_URL_Street, WORDS_API_URL_Home, WORDS_API_URL_Food
 from .player_state import AnswearState
+from .bot_messages import RichtigMessage, FalschMessage
 
 
 def category_word(data):
@@ -33,6 +34,7 @@ async def street_play(call: types.CallbackQuery, state: FSMContext):
         data['word'] = res.get("word")
         await call.message.answer(f"{data['step']}/10. Якого роду слово -  {data['word']}", reply_markup=inline_kb)
 
+
 """Порівнює відповідь користувача, зі словом з БД, яке надійшло раніше.
      Перевіряє скільки слів відповів користувач."""
 @dp.callback_query_handler(lambda c: c.data in ["das", "die", "der"], state=AnswearState.street_play_start)
@@ -47,13 +49,12 @@ async def send_random_value(call: types.CallbackQuery, state: FSMContext):
             data["answer"] = random_resalt.get("gender")
             data["word"] = random_resalt.get("word")
             if data["step"] > 10:
-                await call.message.answer( "The game is over",)
-                await AnswearState.street_play_start.set()
+                await call.message.answer( "The game is over", reply_markup=reapeat_button)
+                await state.finish()
             else:
                 await call.message.answer(
-                                       "Richtig  \n" + f"{data['step']}/10.  {data['word']}", reply_markup=inline_kb)
-
+                                      f"{random.choice(RichtigMessage)}  \n {data['step']}/10.  {data['word']}", reply_markup=inline_kb)
         else:
-            await call.message.answer("Leider nein. Versuchen Sie noch mal! \n", reply_markup=inline_kb)
+            await call.message.answer(f"{random.choice(FalschMessage)} \n", reply_markup=inline_kb)
 
 

@@ -22,3 +22,7 @@ buttons_cat = [
 
 inline_kb_cat = InlineKeyboardMarkup(row_width=3)
 inline_kb_cat.add(*buttons_cat)
+
+"""Кнопка повторити"""
+reapeat_button = InlineKeyboardMarkup(row_width=1)
+reapeat_button.add(InlineKeyboardButton(" Щоб повторити, тицьни туточки", callback_data="repeat"))
