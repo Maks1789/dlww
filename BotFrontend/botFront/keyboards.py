@@ -26,3 +26,11 @@ inline_kb_cat.add(*buttons_cat)
 """Кнопка повторити"""
 reapeat_button = InlineKeyboardMarkup(row_width=1)
 reapeat_button.add(InlineKeyboardButton(" Щоб повторити, тицьни туточки", callback_data="repeat"))
+
+
+"""Звичайна кнопка відміна та рестарта
+keyboard_cancel_restart = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+cancel_button = KeyboardButton(text="cancel")
+restart_button = KeyboardButton(text="repeat")
+keyboard_cancel_restart.add(cancel_button, restart_button)
+"""
