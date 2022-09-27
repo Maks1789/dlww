@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from WordsDRF.views import *
+from SentencesDRF.views import *
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
@@ -24,6 +25,8 @@ router.register(r'word', WordAPIList, basename='Wolds_all')
 router.register(r'Street',  WordAPIcategoryStreet, basename='Wolds_Street')
 router.register(r'Home', WordAPIcategoryHome, basename='Wolds_Home')
 router.register(r'Food', WordAPIcategoryFood, basename='Wolds_Food')
+router.register(r'Sent', AccountViewSet, basename='Sent')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),

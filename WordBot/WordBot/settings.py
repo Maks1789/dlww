@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'WordsDRF',
     'rest_framework',
+    'SentencesDRF',
 ]
 
 MIDDLEWARE = [
